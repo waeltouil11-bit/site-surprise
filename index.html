@@ -25,41 +25,14 @@
 <button class="btn-primary" id="startBtn">Commencer</button>
 </section>
 
-<section class="screen" data-screen="quiz">
-<p class="eyebrow" id="quizCounter">Question 1 / 5</p>
-<h2 class="title-serif quiz-question" id="quizQuestion">Question</h2>
-<div class="options" id="quizOptions"></div>
-<p class="feedback" id="quizFeedback"></p>
-<button class="btn-primary" id="nextQuestionBtn" style="display:none;">Suivant</button>
-</section>
-
 <section class="screen" data-screen="meter">
-<p class="eyebrow">Résultat</p>
-<h2 class="title-serif" id="meterTitle">Ton score d'amour</h2>
-<div class="gauge-wrap">
-<svg viewBox="0 0 200 110" class="gauge">
-<path d="M10 100 A 90 90 0 0 1 190 100" class="gauge-track" />
-<path d="M10 100 A 90 90 0 0 1 190 100" class="gauge-fill" id="gaugeFill" />
-<line x1="100" y1="100" x2="100" y2="25" id="gaugeNeedle" class="gauge-needle" />
-<circle cx="100" cy="100" r="6" class="gauge-pivot" />
-</svg>
-<p class="gauge-value" id="gaugeValue">0%</p>
-</div>
-<p class="body-text" id="meterComment">Chargement...</p>
-<button class="btn-primary" id="toPhotoBtn">Continuer</button>
-</section>
-
-<section class="screen" data-screen="photo">
-<p class="eyebrow">Un souvenir</p>
-<div class="polaroid">
-<img src="assets/photo.jpg" alt="Notre souvenir" id="photoImg" onerror="this.style.display='none'; this.parentElement.classList.add('polaroid-empty')">
-<p class="polaroid-caption" id="photoCaption">Notre premier souvenir</p>
-</div>
-
-<div class="player" id="spotifyPlayer">
-<iframe id="spotifyFrame" style="border-radius:12px" src="" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-</div>
-
+<p class="eyebrow" id="meterEyebrow">Un petit test</p>
+<h2 class="title-serif" id="meterTitle">Combien tu m'aimes ?</h2>
+<p class="body-text" id="meterSubtitle">Fais glisser la barre jusqu'à ton ressenti du moment.</p>
+<div class="meter-emoji" id="meterEmoji">😐</div>
+<input type="range" min="0" max="100" value="50" step="1" class="love-slider" id="loveSlider">
+<p class="meter-value" id="meterValue">50%</p>
+<p class="meter-caption" id="meterCaption">Comme ci, comme ça</p>
 <button class="btn-primary" id="toLetterBtn">Continuer</button>
 </section>
 
@@ -80,7 +53,8 @@
 </div>
 <h2 class="title-serif" id="finalTitle">Je t'aime</h2>
 <p class="body-text" id="finalMessage">Merci d'être toi, aujourd'hui et pour toujours.</p>
-<button class="btn-secondary" id="restartBtn">Recommencer</button>
+<button class="btn-secondary" id="meAlsoBtn">Moi aussi</button>
+<p class="reveal-text" id="meAlsoReveal"></p>
 </section>
 
 </main>
@@ -88,3 +62,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
