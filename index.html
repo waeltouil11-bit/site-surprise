@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Pour toi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="progress" id="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+<main id="app" class="app">
+
+<section class="screen active" data-screen="welcome">
+<div class="deco deco-top" aria-hidden="true">
+<svg viewBox="0 0 200 40" class="squiggle"><path d="M2 20 Q 30 2, 55 20 T 105 20 T 155 20 T 200 20" /></svg>
+</div>
+<p class="eyebrow" id="welcomeEyebrow">Une petite surprise</p>
+<h1 class="title-serif" id="welcomeTitle">Pour toi</h1>
+<p class="body-text" id="welcomeSubtitle">J'ai préparé quelque chose rien que pour toi. Scanne, découvre, et laisse-toi guider.</p>
+<button class="btn-primary" id="startBtn">Commencer</button>
+</section>
+
+<section class="screen" data-screen="quiz">
+<p class="eyebrow" id="quizCounter">Question 1 / 5</p>
+<h2 class="title-serif quiz-question" id="quizQuestion">Question</h2>
+<div class="options" id="quizOptions"></div>
+<p class="feedback" id="quizFeedback"></p>
+<button class="btn-primary" id="nextQuestionBtn" style="display:none;">Suivant</button>
+</section>
+
+<section class="screen" data-screen="meter">
+<p class="eyebrow">Résultat</p>
+<h2 class="title-serif" id="meterTitle">Ton score d'amour</h2>
+<div class="gauge-wrap">
+<svg viewBox="0 0 200 110" class="gauge">
+<path d="M10 100 A 90 90 0 0 1 190 100" class="gauge-track" />
+<path d="M10 100 A 90 90 0 0 1 190 100" class="gauge-fill" id="gaugeFill" />
+<line x1="100" y1="100" x2="100" y2="25" id="gaugeNeedle" class="gauge-needle" />
+<circle cx="100" cy="100" r="6" class="gauge-pivot" />
+</svg>
+<p class="gauge-value" id="gaugeValue">0%</p>
+</div>
+<p class="body-text" id="meterComment">Chargement...</p>
+<button class="btn-primary" id="toPhotoBtn">Continuer</button>
+</section>
+
+<section class="screen" data-screen="photo">
+<p class="eyebrow">Un souvenir</p>
+<div class="polaroid">
+<img src="assets/photo.jpg" alt="Notre souvenir" id="photoImg" onerror="this.style.display='none'; this.parentElement.classList.add('polaroid-empty')">
+<p class="polaroid-caption" id="photoCaption">Notre premier souvenir</p>
+</div>
+
+<div class="player" id="spotifyPlayer">
+<iframe id="spotifyFrame" style="border-radius:12px" src="" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+
+<button class="btn-primary" id="toLetterBtn">Continuer</button>
+</section>
+
+<section class="screen" data-screen="letter">
+<div class="deco deco-corner" aria-hidden="true">
+<svg viewBox="0 0 120 120" class="branch"><path d="M5 115 C 20 90, 15 60, 35 40 C 50 25, 45 10, 60 2" /><circle cx="60" cy="2" r="3"/><circle cx="42" cy="22" r="2.5"/><circle cx="28" cy="50" r="2.5"/><circle cx="15" cy="85" r="2.5"/></svg>
+</div>
+<p class="eyebrow" id="letterEyebrow">Une lettre pour toi</p>
+<h2 class="title-serif" id="letterTitle">Ce que je ressens</h2>
+<div class="letter-body" id="letterBody"></div>
+<p class="signature" id="letterSignature">Pour toujours.</p>
+<button class="btn-primary" id="toFinalBtn">Continuer</button>
+</section>
+
+<section class="screen" data-screen="final">
+<div class="heart-anim" aria-hidden="true">
+<svg viewBox="0 0 100 90" class="heart-svg" id="heartSvg"><path d="M50 82 C 15 58, 2 35, 12 18 C 20 5, 40 5, 50 22 C 60 5, 80 5, 88 18 C 98 35, 85 58, 50 82 Z"/></svg>
+</div>
+<h2 class="title-serif" id="finalTitle">Je t'aime</h2>
+<p class="body-text" id="finalMessage">Merci d'être toi, aujourd'hui et pour toujours.</p>
+<button class="btn-secondary" id="restartBtn">Recommencer</button>
+</section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
