@@ -1,65 +1,234 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Pour toi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+:root{
+--bg: #FBF1EC;
+--card: #FFFFFF;
+--ink: #4A2B32;
+--ink-soft: #8A6A70;
+--rose: #C6597A;
+--rose-deep: #9C3D59;
+--rose-pale: #F3D4DD;
+--gold: #D8A857;
+--track: #EFDDD0;
+--radius: 18px;
+--font-display: 'Cormorant Garamond', serif;
+--font-body: 'Jost', sans-serif;
+--font-hand: 'Caveat', cursive;
+}
 
-<div class="progress" id="progress"><div class="progress-fill" id="progressFill"></div></div>
+*{box-sizing:border-box;}
 
-<main id="app" class="app">
+html,body{
+margin:0;
+padding:0;
+background:var(--bg);
+color:var(--ink);
+font-family:var(--font-body);
+-webkit-font-smoothing:antialiased;
+}
 
-<section class="screen active" data-screen="welcome">
-<div class="deco deco-top" aria-hidden="true">
-<svg viewBox="0 0 200 40" class="squiggle"><path d="M2 20 Q 30 2, 55 20 T 105 20 T 155 20 T 200 20" /></svg>
-</div>
-<p class="eyebrow" id="welcomeEyebrow">Une petite surprise</p>
-<h1 class="title-serif" id="welcomeTitle">Pour toi</h1>
-<p class="body-text" id="welcomeSubtitle">J'ai préparé quelque chose rien que pour toi. Scanne, découvre, et laisse-toi guider.</p>
-<button class="btn-primary" id="startBtn">Commencer</button>
-</section>
+.progress{
+position:fixed;
+top:0; left:0; right:0;
+height:3px;
+background:var(--track);
+z-index:50;
+}
+.progress-fill{
+height:100%;
+width:16.6%;
+background:var(--rose);
+transition:width .5s ease;
+}
 
-<section class="screen" data-screen="meter">
-<p class="eyebrow" id="meterEyebrow">Un petit test</p>
-<h2 class="title-serif" id="meterTitle">Combien tu m'aimes ?</h2>
-<p class="body-text" id="meterSubtitle">Fais glisser la barre jusqu'à ton ressenti du moment.</p>
-<div class="meter-emoji" id="meterEmoji">😐</div>
-<input type="range" min="0" max="100" value="50" step="1" class="love-slider" id="loveSlider">
-<p class="meter-value" id="meterValue">50%</p>
-<p class="meter-caption" id="meterCaption">Comme ci, comme ça</p>
-<button class="btn-primary" id="toLetterBtn">Continuer</button>
-</section>
+.app{
+min-height:100vh;
+display:flex;
+align-items:stretch;
+justify-content:center;
+}
 
-<section class="screen" data-screen="letter">
-<div class="deco deco-corner" aria-hidden="true">
-<svg viewBox="0 0 120 120" class="branch"><path d="M5 115 C 20 90, 15 60, 35 40 C 50 25, 45 10, 60 2" /><circle cx="60" cy="2" r="3"/><circle cx="42" cy="22" r="2.5"/><circle cx="28" cy="50" r="2.5"/><circle cx="15" cy="85" r="2.5"/></svg>
-</div>
-<p class="eyebrow" id="letterEyebrow">Une lettre pour toi</p>
-<h2 class="title-serif" id="letterTitle">Ce que je ressens</h2>
-<div class="letter-body" id="letterBody"></div>
-<p class="signature" id="letterSignature">Pour toujours.</p>
-<button class="btn-primary" id="toFinalBtn">Continuer</button>
-</section>
+.screen{
+display:none;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+width:100%;
+max-width:480px;
+min-height:100vh;
+padding:64px 28px 48px;
+position:relative;
+}
+.screen.active{
+display:flex;
+animation:rise .5s ease both;
+}
+@keyframes rise{
+from{opacity:0; transform:translateY(14px);}
+to{opacity:1; transform:translateY(0);}
+}
 
-<section class="screen" data-screen="final">
-<div class="heart-anim" aria-hidden="true">
-<svg viewBox="0 0 100 90" class="heart-svg" id="heartSvg"><path d="M50 82 C 15 58, 2 35, 12 18 C 20 5, 40 5, 50 22 C 60 5, 80 5, 88 18 C 98 35, 85 58, 50 82 Z"/></svg>
-</div>
-<h2 class="title-serif" id="finalTitle">Je t'aime</h2>
-<p class="body-text" id="finalMessage">Merci d'être toi, aujourd'hui et pour toujours.</p>
-<button class="btn-secondary" id="meAlsoBtn">Moi aussi</button>
-<p class="reveal-text" id="meAlsoReveal"></p>
-</section>
+.eyebrow{
+font-family:var(--font-body);
+font-size:13px;
+letter-spacing:.04em;
+color:var(--rose-deep);
+margin:0 0 10px;
+}
 
-</main>
+.title-serif{
+font-family:var(--font-display);
+font-weight:600;
+font-size:38px;
+line-height:1.15;
+margin:0 0 16px;
+color:var(--ink);
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+.body-text{
+font-size:16px;
+line-height:1.6;
+color:var(--ink-soft);
+max-width:340px;
+margin:0 0 32px;
+}
 
+.btn-primary{
+font-family:var(--font-body);
+font-size:15px;
+font-weight:500;
+color:#fff;
+background:var(--rose);
+border:none;
+padding:14px 34px;
+border-radius:999px;
+cursor:pointer;
+transition:transform .15s ease, background .15s ease;
+}
+.btn-primary:hover{ background:var(--rose-deep); }
+.btn-primary:active{ transform:scale(0.97); }
+
+.btn-secondary{
+font-family:var(--font-body);
+font-size:15px;
+font-weight:500;
+color:var(--rose-deep);
+background:transparent;
+border:1.5px solid var(--rose);
+padding:12px 30px;
+border-radius:999px;
+cursor:pointer;
+}
+
+.deco-top{ margin-bottom:28px; }
+.squiggle{ width:140px; height:28px; }
+.squiggle path{ fill:none; stroke:var(--rose-pale); stroke-width:3; stroke-linecap:round; }
+
+.deco-corner{ position:absolute; top:18px; right:18px; width:64px; opacity:.8; }
+.branch path{ fill:none; stroke:var(--rose-pale); stroke-width:2; }
+.branch circle{ fill:var(--rose); }
+
+/* Barre d'amour */
+.meter-emoji{
+font-size:64px;
+line-height:1;
+margin:8px 0 28px;
+transition:transform .2s ease;
+}
+.love-slider{
+-webkit-appearance:none;
+appearance:none;
+width:100%;
+max-width:320px;
+height:10px;
+border-radius:999px;
+background:linear-gradient(to right, var(--rose) 50%, var(--track) 50%);
+outline:none;
+margin-bottom:18px;
+}
+.love-slider::-webkit-slider-thumb{
+-webkit-appearance:none;
+appearance:none;
+width:28px;
+height:28px;
+border-radius:50%;
+background:#fff;
+border:4px solid var(--rose);
+cursor:pointer;
+box-shadow:0 2px 8px rgba(74,43,50,0.2);
+}
+.love-slider::-moz-range-thumb{
+width:28px;
+height:28px;
+border-radius:50%;
+background:#fff;
+border:4px solid var(--rose);
+cursor:pointer;
+box-shadow:0 2px 8px rgba(74,43,50,0.2);
+}
+.love-slider::-moz-range-track{
+height:10px;
+border-radius:999px;
+background:var(--track);
+}
+.meter-value{
+font-family:var(--font-display);
+font-size:30px;
+font-weight:600;
+color:var(--rose-deep);
+margin:0 0 6px;
+}
+.meter-caption{
+font-size:15px;
+color:var(--ink-soft);
+margin:0 0 30px;
+}
+
+/* Letter */
+.letter-body{
+text-align:left;
+max-width:360px;
+color:var(--ink);
+font-size:16px;
+line-height:1.75;
+margin-bottom:8px;
+}
+.letter-body p{ margin:0 0 14px; }
+.signature{
+font-family:var(--font-hand);
+font-size:28px;
+color:var(--rose-deep);
+margin:6px 0 30px;
+align-self:flex-end;
+max-width:360px;
+width:100%;
+text-align:right;
+}
+
+/* Final */
+.heart-anim{ width:110px; margin-bottom:6px; }
+.heart-svg path{ fill:var(--rose); }
+.heart-svg{ animation:beat 1.4s ease-in-out infinite; }
+@keyframes beat{
+0%,100%{ transform:scale(1); }
+50%{ transform:scale(1.08); }
+}
+
+.reveal-text{
+font-family:var(--font-hand);
+font-size:26px;
+color:var(--rose-deep);
+margin-top:18px;
+opacity:0;
+transform:translateY(6px);
+transition:opacity .4s ease, transform .4s ease;
+}
+.reveal-text.show{
+opacity:1;
+transform:translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce){
+.screen.active{ animation:none; }
+.heart-svg{ animation:none; }
+.gauge-fill, .gauge-needle{ transition:none; }
+}
